@@ -9,6 +9,6 @@
 - latex codecogs에서 지원해주는 기능
 
 ## 코드는?
-```
+```html
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;[이곳에 수식을 입력하시오]"/>
 ```
