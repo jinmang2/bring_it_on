@@ -1,5 +1,7 @@
 ## Link
-- 자체 개발
+- `plot3Dsurfacevector`는 자체 개발
+- `Arrow3D` 객체는 아래 링크 
+- https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot
 
 ## 어떤 역할?
 - 3D 벡터가 주어졌을 때 직육면체로 이 벡터가 어느 사분면에 있는지 시각화해주는 함수
