@@ -1,6 +1,6 @@
 ## Link
 - `plot3Dsurfacevector`는 자체 개발
-- `Arrow3D` 객체는 아래 링크 
+- `Arrow3D` 객체는 아래 링크 참고
 - https://stackoverflow.com/questions/22867620/putting-arrowheads-on-vectors-in-matplotlibs-3d-plot
 
 ## 어떤 역할?
