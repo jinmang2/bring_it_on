@@ -11,7 +11,7 @@
 >- Record Artificial Intelligence Issues
 >- 인공지능 관련 이슈들을 기록 및 정리
 
->### [Studying_source](https://github.com/jinmang2/bring_it_on/tree/master/Studㅛing_source)
+>### [Studying_source](https://github.com/jinmang2/bring_it_on/tree/master/Studing_source)
 >- Record study links
 >- 내가 공부할 스터디 링크들을 기입
 
