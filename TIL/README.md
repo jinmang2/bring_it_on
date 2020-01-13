@@ -36,7 +36,7 @@
 - [How_to_write_classmethod_and_staticmethod.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/How_to_write_classmethod_and_staticmethod.md)
 - [Progbar.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Progber.md)
 - [Timeit_decorator.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Timeit_decorator.md)
-- [__str__vs__repr__.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/__str__vs__repr__.md)
+- [\_\_str\_\_vs\_\_repr\_\_.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/__str__vs__repr__.md)
 
 ### Pytorch
 - [Pytorch_example_source.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Pytorch/Pytorch_example_source.md)
