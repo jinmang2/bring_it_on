@@ -39,3 +39,11 @@
 
 ### Pytorch
 - [Pytorch_example_source.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Pytorch/Pytorch_example_source.md)
+
+### Keras
+- [Bidirectional_GRU.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/Bidirectional_GRU.md)
+- [LSTM.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/LSTM.md)
+- [Save_and_load_models.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/Save_and_load_models.md)
+
+### Natural Language Process
+- [AI_essay_writer.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Natural%20Language%20Process/AI_essay_writer.md)
