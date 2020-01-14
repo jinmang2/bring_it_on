@@ -14,6 +14,7 @@
 ### Crawler
 - [DanawaCrawler.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/DanawaCrawler.md)
 - [danawa_crawling.py](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/danawa_crawling.py)
+- [Spallcheck_pusan.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/Spallcheck_pusan.md)
 
 ### Docker
 - [Install_docker_on_win10.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Docker/Install_docker_on_win10.md)
