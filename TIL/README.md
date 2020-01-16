@@ -11,9 +11,13 @@
 * [좋은 git commit message를 작성하기 위한 7가지 약속](http://meetup.toast.com/posts/106)
 
 ---
+### Algorithm
+- yet...
+
 ### Crawler
 - [DanawaCrawler.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/DanawaCrawler.md)
 - [danawa_crawling.py](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/danawa_crawling.py)
+- [Hanwha_FQA_Crawler.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/Hanwha_FQA_Crawler.md)
 - [Spallcheck_pusan.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Crawler/Spallcheck_pusan.md)
 
 ### Docker
@@ -38,6 +42,11 @@
 - [Progbar.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Progber.md)
 - [Timeit_decorator.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Timeit_decorator.md)
 - [\_\_str\_\_vs\_\_repr\_\_.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/__str__vs__repr__.md)
+- [Closure.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Closure.md)
+- [Debug_XLRDError.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Debug_XLRDError.md)
+- [Decorator.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/Decorator.md)
+- [First_class_function.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/First_class_function.md)
+- [overloading_vs_overriding.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Python/overloading_vs_overriding.md)
 
 ### Pytorch
 - [Pytorch_example_source.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Pytorch/Pytorch_example_source.md)
@@ -46,6 +55,12 @@
 - [Bidirectional_GRU.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/Bidirectional_GRU.md)
 - [LSTM.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/LSTM.md)
 - [Save_and_load_models.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/Save_and_load_models.md)
+- [Keras_model_파보기.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Keras/Keras_model_%ED%8C%8C%EB%B3%B4%EA%B8%B0.md)
+
+### Tensorflow2.0
+- [Eager_execution.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Tensorflow2.0/Eager_execution.md)
+- [LinearRegression.ipynb](https://nbviewer.jupyter.org/github/jinmang2/bring_it_on/blob/master/TIL/Tensorflow2.0/LinearRegression.ipynb)
+- [tensorflow2.0.ipynb](https://nbviewer.jupyter.org/github/jinmang2/bring_it_on/blob/master/TIL/Tensorflow2.0/tensorflow2.0.ipynb)
 
 ### Natural Language Process
 - [AI_essay_writer.md](https://github.com/jinmang2/bring_it_on/blob/master/TIL/Natural%20Language%20Process/AI_essay_writer.md)
