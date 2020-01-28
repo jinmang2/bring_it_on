@@ -41,6 +41,7 @@ def fibonacci(n):
 
 ```
 1. 탑-다운: memoization. 위 피보나치 문제와 같이 큰 계산을 작은 계산으로 나누고 작은 계산의 결과를 저장, 재사용
+
 2. 바텀-업: 문제를 분석하여 작은 문제들이 풀려나가는 순서를 확인한 후 사소한 문제부터 플어나가기 시작.
             이 과정에서 작은 문제들은 전체 문제가 풀리기 전에 모두 풀리는 것이 보장.
 ```
@@ -62,9 +63,11 @@ def fibonacci(n):
 ### 문제: 1까지의 최단 경로
 ```
 어떤 양의 정수 n에 대해서, 이 n을 감소시키는 방법에는 여러 가지 방법이 존재.
+
 1) 1을 뺀다.
 2) n이 짝수인 경우 2로 나눈다.
 3) n이 3의 배수인 경우 3으로 나눈다.
+
 임의의 양의 정수 n에 대해 1까지 가는 최소 단계의 수를 구하면?
 ```
 - n=10
@@ -116,6 +119,12 @@ def path_memo(n):
 path_memo(10)
 ```
 ```
+# 주석 다 지우면 원래의 출력
+# memoization 과정이 없으면 아래 cashing 부분에서 
+# 이미 계산한 부분을 다시 호출하여 계산하는 불상사가 발생
+# 결국에는 2의 배수, 3의 배수일 경우 재귀 호출하여 경로를 계산하고
+# 작은 문제들을 풀어나가 원하는 path_memo(10)의 결과값을 도출
+
 함수호출   10                           # 6번줄에서 재귀호출: 1
 함수호출   9                            # 6번줄에서 재귀호출: 1-2
 함수호출   8                            # 6번줄에서 재귀호출: 1-2-3
@@ -130,79 +139,185 @@ path_memo(10)
                                        # (10-3) 1 < 2 is True
                                        # (10-4) return 0, 스택 해제
                                        
-# 아래 결과는 memoization으로 인해 중첩된 결과가 지워진 것.
-# 주석으로 memoization이 없을 시 연산 과정을 기입
-# memoization이 없다면 중간에 path_memo(8)을 계산할 때 path_memo(4, 3, 2, 1, ..) 계속해서 반복 호출 및 계산해야 함
-# 아래 주석 또한 반복 계산은 호출 과정을 설명하지 않고 귀납적으로 설명을 기재함.
-# 실제로 n번 스택으로 가는 것이 아닌 그 구조를 재실행.
 2        [0]    ->      [0, 0]  1    # 9번 스택,
-                                     # (9-6) test = [path_memo(2-1)]
-                                         # 10번 스택 실행 n=1, 0을 반환
-                                         # test = [0]
+                                     # (9-6) test = [0] # 10번 stack의 return 값
                                      # (9-8) 2 % 2 == 0 is True
                                      # (9-9) test.append(path_memo(2/2))
-                                         # 10번 스택 실행 n=1, 0을 반환
+                                         # n=1 cashing, 0을 반환
                                          # test = [0, 0]
-                                     # (9-13) result = 1 + min([0, 0]) = 1
+                                     # (9-13) 1 + min([0, 0]) = 1
                                      # (9-14) return 1, 스택 해제
 3        [1]    ->      [1, 0]  1    # 8번 스택,
-                                     # (8-6) test = [path_memo(3-1)]
-                                         # 9번 스택 실행 n=2
-                                             # 10번 스택 실행 n=1, 0을 반환
-                                         # 1을 반환
-                                         # test = [1]
+                                     # (8-6) test = [1] # 9번 stack의 return 값
                                      # (8-10) 3 % 3 is True
                                      # (8-11) test.append(path_memo(3/3))
-                                         # 10번 스택 실행 n=1, 0을 반환
+                                         # n=1 cashing, 0을 반환
                                          # test = [1, 0]
-                                     # (8-13) result = 1 + min([1, 0]) = 1
+                                     # (8-13) 1 + min([1, 0]) = 1
                                      # (8-14) return 1, 스택 해제
 4        [1]    ->      [1, 1]  2    # 7번 스택,
-                                     # 
-5        [2]    ->      [2]     3    # 6번 스택, test = [2]
-                                     # 5는 2와 3의 배수가 아님,
-                                     # 1 + min([2]) = 3 반환, 다음 test=[3]이 되며 스택 해제
-6        [3]    ->      [3, 1]  2    # 5번 스택, test = [3]
-                                     # 6 % 2 == 0 => path_memo(6/2) 실행
-                                         # 3 % 3 == 0 => path_memo(3/3) 실행 (서브스택 생성)
-                                             # test' = [1] ? since, path_memo(3-1) == 1 (원래는 2, 1 호출해서 재계산)
-                                             # 0 반환 후 test'.append(0) 실시
-                                         # 1 + min([1, 0]) = 1 반환, test.append(1) 실시 후 서브스택 해제
-                                     # 1 + min([3, 1]) = 2 반환, 다음 test=[2]가 되며 스택 해제
-7        [2]    ->      [2]     3    # 4번 스택, test = [2]
+                                     # (7-6) test = [1] # 8번 stack의 return 값
+                                     # (7-8) 4 % 2 == 0 is True
+                                     # (7-9) test.append(path_memo(4/2))
+                                         # n=2 cashing, 1을 반환
+                                         # test = [1, 1]
+                                     # (7-13) 1 + min([1, 1]) = 2
+                                     # (7-14) return 2, 스택 해제
+5        [2]    ->      [2]     3    # 6번 스택,
+                                     # (6-6) test = [2] # 7번 stack의 return 값
+                                     # 5는 2와 3의 배수가 아님
+                                     # (6-13) 1 + min([2]) = 3
+                                     # (6-14) return 3, 스택 해제
+6        [3]    ->      [3, 1]  2    # 5번 스택,
+                                     # (5-6) test = [3] # 6번 stack의 return 값
+                                     # (5-8) 6 % 2 == 0 is True
+                                     # (5-9) test.append(path_memo(6/2))
+                                         # n=3 cashing, 1을 반환
+                                         # test = [3, 1]
+                                     # (5-13) 1 + min([3, 1]) = 2
+                                     # (5-14) return 2, 스택 해제
+7        [2]    ->      [2]     3    # 4번 스택,
+                                     # (4-6) test = [2] # 5번 stack의 return 값
                                      # 7은 2와 3의 배수가 아님,
-                                     # 1 + min([2]) = 3 반환, 다음 test=[3]이 되며 스택 해제
-8        [3]    ->      [3, 2]  3    # 3번 스택, test = [3]
-                                     # 8 % 2 == 0 => path_memo(8/2) 실행
-                                         # 4 % 2 == 0 => path_memo(4/2) 실행 (서브스택 생성)
-                                             # test' = [1] ? path_memo(4-1) == 1 (원래는 3,2,1 호출해서 재계산)
-                                             # 2 % 2 == 0 => path_memo(2/2) 실행 (서브스택2 생성)
-                                                 # test'' = [0] ? since, path_memo(1) == 0
-                                                 # 0 반환 후 test''.append(0) 실시
-                                             # 1 + min([0, 0]) = 1 반환, test'.append(1) 실시 후 서브스택2 해제
-                                         # 1 + min([1, 1]) = 2 반환, test.append(2) 실시 후 서브스택 해제
-                                     # 1 + min([3, 2]) = 3 반환, 다음 test=[3]이 되며 스택 해제
+                                     # (4-13) 1 + min([2]) = 3
+                                     # (4-14) return 3, 스택 해제
+8        [3]    ->      [3, 2]  3    # 3번 스택,
+                                     # (3-6) test = [3] # 4번 stack의 return 값
+                                     # (3-8) 8 % 2 == 0 is True
+                                     # (3-9) test.append(path_memo(8/2))
+                                         # n=4 cashing, 2를 반환
+                                         # test = [3, 2]
+                                     # (3-13) 1 + min([3, 2]) = 3
+                                     # (3-14) return 3, 스택 해제
 9        [3]    ->      [3, 1]  2    # 2번 스택,
-                                     # 9 % 3 == 0 => path_memo(9/3) 실행
-                                         # 3 % 3 == 0 => path_memo(3/3) 실행
-                                             # test' = [1] ? since, path_memo(3-1) == 1
-                                             # 1 + min([1, 0]
-10       [2]    ->      [2, 3]  3    # 1번 스택, 
+                                     # (2-6) test = [3] # 3번 stack의 return 값
+                                     # (2-10) 9 % 3 == 0 is True
+                                     # (2-11) test.append(path_memo(9/3))
+                                         # n=3 cashing, 1을 반환
+                                         # test = [3, 1]
+                                     # (2-13) 1 + min([3, 1]) = 2
+                                     # (2-14) return 2, 스택 해제
+10       [2]    ->      [2, 3]  3    # 1번 스택,
+                                     # (1-6) test = [2] # 2번 stack의 return 값
+                                     # (1-8) 10 % 2 == 0 is True
+                                     # (1-9) test.append(path_memo(10/5))
+                                         # n=5 cashing, 3을 반환
+                                         # test = [2, 3]
+                                     # (1-13) 1 + min([2, 3]) = 3
+                                     # (1-14) return 3, 스택 해제 후 최종 결과값
+                                     
+# 결국 이런거구만!
+# 1을 뺀 값(이전 값)으로 가는 것이 최단인지, 2로 나눴을 시, 3으로 나눴을 시가 최단인지
+# min으로 계산 후
+# 해당 선택지를 취해야 하니 1을 더해준다.
+# 1 + min(Pn-1, Pn/2, Pn/3)
 ```
 - 동적 계획 풀이
 ```python
 def path_dp(n):
-    paths = [0, 0] + [0] + n
+    paths = [0, 0] + [0] * n
     #        ^0 ^1   ..... n
     # path[1] = 0
-    intervals = [1, 2, 3]
     for i in range(2, n+1):
         paths[i] = paths[i-1] + 1
         if i % 2 == 0:
-            paths[i] = min((paths[i], 1 + paths[i/2]))
+            paths[i] = min((paths[i], 1 + paths[i//2]))
         elif i % 3 == 0:
-            paths[i] = min((paths[i], 1 + paths[i/3]))
+            paths[i] = min((paths[i], 1 + paths[i//3]))
     return paths[n]
+```
+```python
+# 시간비교
+
+# path_memo
+for i in range(2, 11):
+    %timeit path_memo(i)
+    
+>>> 128 ns ± 0.259 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 129 ns ± 1.08 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 129 ns ± 0.441 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 130 ns ± 0.378 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 128 ns ± 0.553 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 129 ns ± 1.04 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 129 ns ± 0.251 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 128 ns ± 0.604 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+>>> 128 ns ± 1.03 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+# path_dp
+for i in range(2, 11):
+    %timeit path_dp(i)
+    
+>>> 806 ns ± 2.43 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+>>> 1.17 µs ± 2.72 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+>>> 1.51 µs ± 4.55 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+>>> 1.66 µs ± 8.58 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+>>> 2.01 µs ± 29.7 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+>>> 2.16 µs ± 14.1 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+>>> 2.49 µs ± 7.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+>>> 2.85 µs ± 8.28 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+>>> 3.16 µs ± 18.5 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+```
+### 문제: 가장 긴 증가하는 부분 수열
+```
+주어진 수열에 대해 그 부분 수열 중, 각 항이 증가하는 순서로 구성된 가장 긴 부분 수열을 찾아라
+```
+- 가장 평이한 로직은 다음 항이 이전 항보다 크면 부분 수열에 추가하는 식으로 검사
+- 최악의 경우 O(n^2)의 시간 복잡도를 가짐
+- 이는 수열의 맨 뒤에서부터 앞의 항이 뒤의 항보다 큰 경우에서 시작하여(증가하는 부분 수열의 끝)
+- 앞으로 나가면서 길이값을 1씩 늘려나가고, 다시 앞의 항이 더 큰 경우를 만나면 0으로 초기화하는 방법을 사용하면
+- O(n)의 시간 복잡도로 줄일 수 있다.
+```python
+def LIS(aList):
+    _length = len(aList)
+    lis = [0] + [0] * _length
+    for i in range(_length-2, 0, -1):
+        if aList[i] < aList[i+1]:
+            lis[i] = lis[i+1] + 1
+    max_index = lis.index(max(lis))
+    return aList[max_index:max_index+lis[max_index]+1]
+    
+a = [8, 3, 2, 4, 5, 6, 2, 7, 1, 2, 4, 7, 8, 9, 7]
+l = len(a)
+lis = [0] * (l + 1)
+
+RANGE = range(l-2, 0, -1)
+for i in RANGE:
+    if i == l-2:
+        print('i\t a[i]\t a[i+1]\t cond\t lis')
+    print(i, '\t', a[i], '\t', a[i+1], end='')
+    if a[i] < a[i+1]:
+        lis[i] = lis[i+1] + 1
+        BOOL = True
+    else:
+        BOOL = False
+    print('\t', BOOL, '\t', lis)
+    
+>>> i        a[i]    a[i+1]  cond    lis
+>>> 13       9       7       False   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+>>> 12       8       9       True    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+>>> 11       7       8       True    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0]
+>>> 10       4       7       True    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 1, 0, 0, 0]
+>>> 9        2       4       True    [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 2, 1, 0, 0, 0]
+>>> 8        1       2       True    [0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 7        7       1       False   [0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 6        2       7       True    [0, 0, 0, 0, 0, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 5        6       2       False   [0, 0, 0, 0, 0, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 4        5       6       True    [0, 0, 0, 0, 1, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 3        4       5       True    [0, 0, 0, 2, 1, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 2        2       4       True    [0, 0, 3, 2, 1, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+>>> 1        3       2       False   [0, 0, 3, 2, 1, 0, 1, 0, 5, 4, 3, 2, 1, 0, 0, 0]
+#                                                             _ is max index!! and contents is 5.
+
+max_index = lis.index(max(lis))
+max_index
+>>> 8
+lis[max_index]
+>>> 5
+a
+>>> [8, 3, 2, 4, 5, 6, 2, 7, 1, 2, 4, 7, 8, 9, 7]
+#                            _________________ Here!! 1 to 9, 5 steps
+a[max_index:max_index+lis[max_index]+1]
+>>> [1, 2, 4, 7, 8, 9]
 ```
 
 
