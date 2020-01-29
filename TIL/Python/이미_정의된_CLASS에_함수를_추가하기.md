@@ -68,6 +68,69 @@ TypeError                                 Traceback (most recent call last)
 ----> 1 t.new_cond()
 
 TypeError: new_cond() missing 1 required positional argument: 'self'
- ```
+```
  
- 
+### 3. `setattr`
+- `setattr` 내장 함수는 내가 주로 아래와 같이 문자열로 변수를 만들 때 사용하던 함수이다.
+```python
+import sys
+mod = sys.modules[__name__]
+
+setattr(mod, 'v1', 1)
+v1
+>>> 1
+```
+- `setattr`은 다음과 같은 인자를 받는다.
+```
+Signature: setattr(obj, name, value, /)
+Docstring:
+Sets the named attribute on the given object to the specified value.
+
+setattr(x, 'y', v) is equivalent to ``x.y = v''
+Type:      builtin_function_or_method
+```
+- 이를 활용해서 이미 정의된 class에 새로운 메서드를 추가하는 것이 가능하다.
+```python
+# 예시 class 정의
+class Test:
+    def __init__(self):
+        self.a = 5
+        self.b = 7
+
+# 추가할 메서드 함수 정의
+def f1(self):
+    return self.a * self.b
+
+# 메서드 추가
+t = Test()
+setattr(t, f1.__name__, f1)
+t.f1()
+```
+```
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-82-613190d80911> in <module>
+     11 t = Test()
+     12 setattr(t, f1.__name__, f1)
+---> 13 t.f1()
+
+TypeError: f1() missing 1 required positional argument: 'self'
+```
+- 엥..? 실패했다...
+- 구글링하여 아래와 같이 수정했다.
+```python
+class Test:
+    def __init__(self):
+        self.a = 5
+        self.b = 7
+
+# 추가할 메서드 함수 정의
+def f1(self):
+    return self.a * self.b
+
+# 메서드 추가
+t = Test()
+setattr(t.__class__, f1.__name__, f1)
+t.f1()
+>>> 35
+```
