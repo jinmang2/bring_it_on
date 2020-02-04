@@ -7,10 +7,12 @@
 
 ### docs
 - Install `Docker` on Windows 10 Home edition
+- Installation Debugging
 - Studying `Docker` concepts
 - Commands of `Docker`
 - Example Usage `Docker`
 - Generate container and image
+
 
 ### Reference
 - [이제는, 딥러닝 개발환경도 Docker로 올려보자!!](http://moducon.kr/2018/wp-content/uploads/sites/2/2018/12/leesangsoo_slide.pdf)
@@ -36,3 +38,25 @@
 - [Dockerfile Entrypoint 와 CMD의 올바른 사용 방법](https://bluese05.tistory.com/77)
 - [dockerfile 역할과 활용 정리](https://lejewk.github.io/docker-dockerfile/)
 - [Windows docker build warning non-windows docker host](https://stackoverflow.com/questions/46080312/windows-docker-build-warning-non-windows-docker-host)
+
+### Debugging & etc. links
+- https://github.com/kakao/khaiii/blob/master/docker/Dockerfile
+- https://hoony-gunputer.tistory.com/74
+- https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html
+- https://yahwang.github.io/posts/41
+- https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/setup-jupyter-login.html
+- https://tobelinuxer.tistory.com/26
+- http://pyrasis.com/Docker/Docker-HOWTO
+- https://kji6252.github.io/2017/04/03/windows-docker-install/
+- https://kitematic.com/docs/
+- https://velog.io/@k7120792/docker-%EC%82%BD%EC%A7%88%EA%B8%B0-bjjys2ars2
+- https://hub.docker.com/r/zxzl/khaiii
+- https://jojoldu.tistory.com/139
+- https://provia.tistory.com/56
+- https://www.tenforums.com/tutorials/7247-turn-windows-features-off-windows-10-a.html
+- https://stackoverflow.com/questions/49635474/docker-quickstart-terminal-unable-to-start-the-vm/50271321
+- https://joonas.tistory.com/81
+- https://drengineer.tistory.com/entry/Docker-install-fail
+- https://steemit.com/kr/@mystarlight/docker
+- https://medium.com/@saerombang11/docker%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-khaiii-%EC%84%A4%EC%B9%98%EC%88%98%EB%82%9C%EA%B8%B0-53d014f9eb58
+- https://gwonsungjun.github.io/articles/2018-01/DockerInstall
