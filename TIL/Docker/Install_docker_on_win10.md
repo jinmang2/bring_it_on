@@ -1,8 +1,12 @@
-# khaiii를 위한 Docker 설치 삽질기... Windows 10 Home
+# khaiii를 위한 Docker 설치 삽질기 on Windows 10 Home
 ## 0. Topology
 - Windows 10 pro는 Saerom Bang님의 [Docker를 활용한 khaiii 설치수난기](https://medium.com/@saerombang11/docker를-활용한-khaiii-설치수난기-53d014f9eb58)를 보면 손쉽게 build 가능
-- 그러나 Windows 10 Home edition은 `Docker for Windows` 설치가 불가능..
-- ETRI 형태소 분석기 대신 khaiii를 사용해보고자 이와 같이 삽질한 작업을 남기고자 한다.
+- 그러나 Windows 10 Home edition은 아래 에러가 발생하며 `Docker for Windows` 설치가 불가능
+   ```
+   Docker Desktop requires Windows 10 Pro or Enterprise version 15063 to run.
+   ```
+- 웹에 접속해서 사용하는 `ETRI 형태소 분석기` 대신 `khaiii`를 사용해보고자 이와 같이 삽질한 작업을 남기고자 한다.
+- 2020.02.04 오늘 현재, `ratsgo`님의 `한국어 임베딩` 서적의 작업 환경을 구축하기 위해 리뉴얼 실시
 
 ## 1. BIOS 환경에서 CPU 사용 가능하게 만들기
 - BIOS setting으로 들어가서 Virtualization을 `Enable` 상태로 만들어준다.
