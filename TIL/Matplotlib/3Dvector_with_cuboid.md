@@ -63,4 +63,4 @@ plot3Dsurfacevector((-1,  2,  0), ax, alpha=0.1, color='r')
 plot3Dsurfacevector(( 0, -1,  4), ax, alpha=0.1, color='b')
 ax.view_init(30, 30)    
 ```
-![title](https://github.com/myunghoonJin/bring_it_on/blob/master/3DvectorWithCuboid.png?raw=true)
+![title](https://github.com/jinmang2/bring_it_on/blob/master/img/3DvectorWithCuboid.png?raw=true)
