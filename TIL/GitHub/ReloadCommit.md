@@ -1,6 +1,6 @@
 # 원격 저장소에 올라간 커밋 되돌리기
 
-### 1. 로컬에서 커밋 되돌린 후 강제 푸시
+## 1. 로컬에서 커밋 되돌린 후 강제 푸시
 로컬에서 `$ git reset`명령어를 이용, 커밋을 되돌림
 ```
 $ git reset --hard HEAD~1 # 1개의 commit 되돌림
@@ -14,7 +14,7 @@ $ git push -f origin master
 - 혼자만 사용하는 branch에 commit을 push했고 이를 되돌리고 싶은 경우
 - 팀원들과 직접 커뮤니케이션해서 내가 되돌린 commit을 pull로 땡겨간 팀원이 없다고 확인된 경우만 사용바람.
 
-### 2. git revert 사용
+## 2. git revert 사용
 - `$ git revert`명령어를 사용, revert 커밋을 커밋 히스토리에 쌓는 방식을 채용
 - 특정 커밋을 되돌리는 작업도 하나의 커밋으로 간주, 커밋 히스토리에 추가
 - 내가 되돌린 작업을 다른 팀원들과 공유 가능
@@ -44,3 +44,7 @@ $ git commit -m "Revert "Commit C, B, A"'
 ```
 $ git push origin master
 ```
+
+## Reference
+- [원격 저장소에 올라간 커밋 되돌리기](https://jupiny.com/2019/03/19/revert-commits-in-remote-repository/)
+- [How to revert multiple git commits?](https://stackoverflow.com/questions/1463340/how-to-revert-multiple-git-commits)
