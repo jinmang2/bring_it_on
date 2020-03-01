@@ -45,6 +45,15 @@ $ git commit -m "Revert "Commit C, B, A"'
 $ git push origin master
 ```
 
+## 실전 활용 예제
+![f1](https://user-images.githubusercontent.com/37775784/75620960-ff6f5400-5bd1-11ea-92db-a3ff08503da8.png)
+![f2](https://user-images.githubusercontent.com/37775784/75620961-00a08100-5bd2-11ea-8b37-02255e0bee60.png)
+![f3](https://user-images.githubusercontent.com/37775784/75620962-01d1ae00-5bd2-11ea-9ea6-eaf8a726fad0.png)
+![f4](https://user-images.githubusercontent.com/37775784/75620963-0302db00-5bd2-11ea-9b4d-c7e2c885918d.png)
+![f5](https://user-images.githubusercontent.com/37775784/75620964-04340800-5bd2-11ea-9cc2-b9113a38e5f9.png)
+![f6](https://user-images.githubusercontent.com/37775784/75620965-04cc9e80-5bd2-11ea-8cb7-bc1678e2856d.png)
+
+
 ## Reference
 - [원격 저장소에 올라간 커밋 되돌리기](https://jupiny.com/2019/03/19/revert-commits-in-remote-repository/)
 - [How to revert multiple git commits?](https://stackoverflow.com/questions/1463340/how-to-revert-multiple-git-commits)
