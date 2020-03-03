@@ -164,7 +164,7 @@ display_info(John, 25) 함수가 실행됐습니다.
 ```
 
 - case 6. 실제 프로젝트에서 데코레이터가 사용되는 예제 > logging
-```
+```python
 # -*- coding: utf-8 -*-
 import datetime
 import time
