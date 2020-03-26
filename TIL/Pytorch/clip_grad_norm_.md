@@ -1,4 +1,7 @@
 # `clip_grad_norm_`
+- Gradient Clipping
+    - https://dhhwang89.tistory.com/90
+    - https://kh-kim.gitbook.io/natural-language-processing-with-pytorch/00-cover-6/05-gradient-clipping
 - Frobenius Norm을 계산하고 max_norm / (Frobenius + epsilon)이 1보다 작을 경우 해당 grad에 곱해줌
 ```python
 import torch
