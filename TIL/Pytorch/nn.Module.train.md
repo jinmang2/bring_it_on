@@ -49,3 +49,5 @@ def __init__(self):
 - `.__repr__(self)`
 - `.__dir__(self)`
 - `._replicate_for_data_parallel(self)`
+
+## `eval`메서드는 mode를 False로 
