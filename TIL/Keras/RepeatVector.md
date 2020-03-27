@@ -1,4 +1,4 @@
-# `RepeatVector`
+# `keras.layesr.RepeatVector`
 - Repeats the input n times
 
 ```python
