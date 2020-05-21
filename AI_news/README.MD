@@ -1,1 +1,4 @@
-# AI 시장 초읽기
+# AI Issues
+
+**200520**
+- https://developer.nvidia.com/cuda/wsl
