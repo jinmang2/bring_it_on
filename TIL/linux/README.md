@@ -1,0 +1,21 @@
+### 201011
+- docker를 wsl2로 깔던 도중 에러 발생
+- https://github.com/docker/hub-feedback/issues/1539
+- 위 같은 에러였는데 나는 성격이 달랐음
+- `lsb_release`는 배포판을 알려주는 명령어. 나는 `bionic`이 뜸
+- 즉, `https://download.docker.com/linux ubuntu/gpg bionic stable`을 설치하기 위한 명령어를 쳤어야 하나
+- `$(lsb_releasce - cs)` 대신 `&(lsb_release -cs)`로 쳐버림
+- 이게 근데 `sudo add-apt-repository`로 `/etc/apt/sources.list`에 그래도 저장이 되버림
+- `sudo apt-get update`마다 서버를 업데이트하는데 여기서 에러가 발생했던 것
+- 때문에 이를 제거하려고 직접 `vim sources.list`로 수정하려 했건만 readonly...
+- 근데 찾아보니 `sudo add-apt-repository --remove`로 제거 가능
+- 이를 사용하여 제거하고 업데이트하여 도커 설치 완료
+- https://github.com/docker/hub-feedback/issues/1539
+- https://linuxconfig.org/how-to-install-docker-on-ubuntu-18-04-bionic-beaver
+- https://qastack.kr/superuser/1126721/rebooting-ubuntu-on-windows-without-rebooting-windows
+- https://stackoverflow.com/questions/41133455/docker-repository-does-not-have-a-release-file-on-running-apt-get-update-on-ubun
+- https://askubuntu.com/questions/197564/how-do-i-add-a-line-to-my-etc-apt-sources-list
+- https://askubuntu.com/questions/313907/how-to-remove-a-particular-ppa
+- https://ubuntuforums.org/showthread.php?t=844539
+- https://twpower.github.io/99-change-apt-get-source-server
+- https://m.blog.naver.com/PostView.nhn?blogId=opusk&logNo=220986301109&proxyReferer=https:%2F%2Fwww.google.com%2F
