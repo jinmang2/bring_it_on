@@ -1,4 +1,4 @@
-# Multi-task and Meta learning
+# Introduction & Overview
 
 첼시 핀 교수님께서 자신의 연구 분야를 설명하며 아래 질문을 던지셨다.
 - `How can we enable agents to learn skills in the real world?`
@@ -24,6 +24,7 @@ What if you don't have a large dataset?
 What if your data has a long tail?
 What if you need to quickly learn structure now? -> 최초엔 few-shot
 ```
+이런 문제들을 해결하기 위해 multi-task 및 meta-learning으로 발전
 
 ## What is task?
 Given Dataset D and Loss L, generate function f_theta.
@@ -36,32 +37,34 @@ Given Dataset D and Loss L, generate function f_theta.
 
 Meta-learning; Learning to Learn의 General Properties를 학습하는 것이 목표
 
-## Multi-task vs Meta ([학생의 질문](https://youtu.be/0rZtSwNOTQo?t=2138), [rough definition](https://youtu.be/0rZtSwNOTQo?t=2181))
+## Multi-task vs Meta
 - **The multi-task learning problem**: Learn all of the tasks more quickly or more proficiently than learning them independently
   - 주어진 모든 task 문제를 빠르고 능숙하게 독립적으로 처리하는 것 (아래 질문글 보면, 굉장히 러프한 정의가 맞음.)
   - 왜 independently??
 - **The meta-learning problem**: Given data/experience on previous tasks, learn a new task more quickly and/or more proficiently
   - 이전에 배운 학습을 기반으로 다음 task 문제를 더 빠르고 능숙하게 처리
   
+**본 강의에서 multi-task 및 meta learning에 대한 모든 알고리즘을 다루진 않음.**
   
-#### Question 1. Meta-learning vs Transfer learning?? ([Question](https://youtu.be/0rZtSwNOTQo?t=2275))
+### Question 1. Meta-learning vs Transfer learning?? ([Question](https://youtu.be/0rZtSwNOTQo?t=2275))
 
-```
-Yeah, So i guess in many ways i think that this is 
-A form of transfer learning problem statement where you wanna take some data and 
-use knowledge acquired from that data to do well at other tasks.
-I think that one aspect about this problem statement is that you want to be able to learn a new task more quickly, 
-whereas in transfer learning you may also want to be able to just form a 
-well-performing a new task well in zero shot where you kind of just want to share representations.
-I actualy kind of view transfer learning as something that encapsulates both of these things, 
-uh where you're thinking about how you can transfer information between different tasks and 
-that could actually also correspond to the multitask learning problem as well as the meta learning problem.
-```
-**정확한 번역이 아님을 주의**
-- transfer learning에서의 두 problem statement `well-perform`, `quickly`
-- 
+>Yeah, So i guess in many ways i think that this is 
+>A form of transfer learning problem statement where you wanna take some data and 
+>use knowledge acquired from that data to do well at other tasks.
+>I think that one aspect about this problem statement is that you want to be able to learn a new task more quickly, 
+>whereas in transfer learning you may also want to be able to just form a 
+>well-performing a new task well in zero shot where you kind of just want to share representations.
+>I actualy kind of view transfer learning as something that encapsulates both of these things, 
+>uh where you're thinking about how you can transfer information between different tasks and 
+>that could actually also correspond to the multitask learning problem as well as the meta learning problem.
 
-#### Question 2. 
+- meta-learning은 transfer learning의 problem statement의 한 형태라고 생각
+- 어떤 problem statement? 데이터를 가져와 그 데이터에서 얻은 지식을 사용하여 다른 작업을 잘 수행하는 것
+- 위 문제 진술에서 새로운 작업을 더 빨리 배울 수 있기를 원할 수도 있고
+- 또 Zero-Shot에서 새로운 작업을 잘 수행(well-performed)하기를 원할 수도 있음 (같은 표현을 공유하면서)
+- 첼시 핀 교수님께서는 전이학습은 위 두 문제 진술의 측면을 encapsulate하는 것이라고 생각
+- 어떻게하면 서로 다른 task간의 정보를 전달할 수 있을 것인가를 연구 주제로 생각
+- 이는 meta-learning뿐만 아니라 multi-task learning에서도 생각할 수 있음.
 
 #### [Differences between Transfer Learning and Meta Learning](https://stackoverflow.com/questions/60261727/differences-between-transfer-learning-and-meta-learning)
 In [Quora](https://www.quora.com/In-machine-learning-what-is-the-difference-between-the-terms-transfer-learning-multitask-learning-inductive-transfer-meta-learning-and-learning-to-learn/answer/Mustafa-Orkun-Acar),
@@ -96,5 +99,60 @@ In [TowardDataScience](https://towardsdatascience.com/icml-2018-advances-in-tran
 
 위 글 보니, multi-task learning은 1997년부터 이어져온 개념같음. 이때 이미 learning to learn이란 키워드 존재.
 
+### Question 2. There could be no meta-learning with one single task? ([Question](https://youtu.be/0rZtSwNOTQo?t=2334))
+> Good Point!
+> In principle, you could still perform meta learning in context of a single task and what you'll 
+> be doing in that case is probably actually in some ways breaking down that single task into sub-tasks or
+> into kind of sub-components, uh and then using that when kind of when you're facing something new in
+> that single task, using that experience to more quickly learn in the future. umm, Yeah, so that's a good point.
+> The tasks in some ways could be something thats's kind of latent to your underlying problem. Yeah.
+
+### Question 3. Is Meat-Learning and Domain Adaptation same? ([Question](https://youtu.be/0rZtSwNOTQo?t=2395))
+> Yeah, so i'll formally cover the distinction with domain adaptation in the next lecture,
+> but, um, in some ways they are similar. I guess in some ways, uh
+> one is more specific than the other and in some ways it's kind of the opposite.
+> So in domain adaptation, you typicallydo want to it's kind of a form of transfer learning in
+> some ways where you want to transfer from one to another.
+> Um, one thing and i guess when i get into the more formal definitions of these problems,
+> this will become more clear, one thing you typically see in the meta-learning problem is 
+> that the tasks that you're seeing in test time you assume to be in the distribution of the tasks
+> that you're seeing it during training, whereas many techniques in domain adaptation are considering
+> a setting where your task domain may be out of distribution from what you're seeing during training
+> so that's in many ways one of those distinctions there.
 
 
+## Doesn't multi-task learning reduce to single-task learning?
+D = Summation{D_i}, L = Summation{L-i} --> single task learning!!
+
+Yes, It can!
+- Aggregating the data across tasks & learning a single model is one approach to multi-task leanring 
+
+But, we can often do better!
+- Exploit the fact that we know that data is coming from different tasks
+
+## Why now? Why should we study deep multi-task & meta-learning now?
+
+- _Multitask Leraning_ Caruanam, 1997
+- _Is Learning The n-th Thing Any Easier Than Learning The First?_ Thrun, 1998
+- _On the Optimization of a Synaptic Learning Rule_ Bengio et al. 1992
+
+learning to learn!!
+
+이 알고리즘들은 ML Research에서 근본적인 역할을 계속해서 수행해옴
+
+- _Multilingual machine translation_
+- _One-shot imitation learning from humans_
+- _Multi-domain learning for sim2real transfer_
+- _YouTuve recommendations_
+
+Increasing role!!
+- paper citation이 계속 증가 ㅎㅎ
+- _How transferable are features in a deep neural network?_ Yosinski et al., 15
+- _Learning to learn by gradient descent by gradient descent_ Andrychowicz et al., 15
+- _Model-agnostic meta-learning for fast adaptation of deep networks_ Finn et al., 17
+- _An overview of multi-task learning in neural networks_ Ruder, 17
+
+Deep Learning 연구의 democratization!
+
+
+## But, we still have many open questions and challenges!
