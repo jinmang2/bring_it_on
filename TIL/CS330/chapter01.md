@@ -34,19 +34,22 @@ Given Dataset D and Loss L, generate function f_theta.
 - Bad News: Different tasks need to share some structure
 - Good News: There are many tasks with shared structure
 
-Meta-learning; 기반 태스크 구조를 배우는 모든 종류를 통칭
+Meta-learning; Learning to Learn의 General Properties를 학습하는 것이 목표
 
 ## Multi-task vs Meta ([학생의 질문](https://youtu.be/0rZtSwNOTQo?t=2138), [rough definition](https://youtu.be/0rZtSwNOTQo?t=2181))
 - **The multi-task learning problem**: Learn all of the tasks more quickly or more proficiently than learning them independently
   - 주어진 모든 task 문제를 빠르고 능숙하게 독립적으로 처리하는 것 (아래 질문글 보면, 굉장히 러프한 정의가 맞음.)
+  - 왜 independently??
 - **The meta-learning problem**: Given data/experience on previous tasks, learn a new task more quickly and/or more proficiently
   - 이전에 배운 학습을 기반으로 다음 task 문제를 더 빠르고 능숙하게 처리
   
-## Meta-learning vs Transfer learning?? ([Question](https://youtu.be/0rZtSwNOTQo?t=2275))
+  
+#### Question 1. Meta-learning vs Transfer learning?? ([Question](https://youtu.be/0rZtSwNOTQo?t=2275))
 
 ```
+Yeah, So i guess in many ways i think that this is 
 A form of transfer learning problem statement where you wanna take some data and 
-use knowledge acquired from that data to do well at other tasks 
+use knowledge acquired from that data to do well at other tasks.
 I think that one aspect about this problem statement is that you want to be able to learn a new task more quickly, 
 whereas in transfer learning you may also want to be able to just form a 
 well-performing a new task well in zero shot where you kind of just want to share representations.
@@ -57,6 +60,8 @@ that could actually also correspond to the multitask learning problem as well as
 **정확한 번역이 아님을 주의**
 - transfer learning에서의 두 problem statement `well-perform`, `quickly`
 - 
+
+#### Question 2. 
 
 #### [Differences between Transfer Learning and Meta Learning](https://stackoverflow.com/questions/60261727/differences-between-transfer-learning-and-meta-learning)
 In [Quora](https://www.quora.com/In-machine-learning-what-is-the-difference-between-the-terms-transfer-learning-multitask-learning-inductive-transfer-meta-learning-and-learning-to-learn/answer/Mustafa-Orkun-Acar),
@@ -90,15 +95,6 @@ In [TowardDataScience](https://towardsdatascience.com/icml-2018-advances-in-tran
 - 나 이거 보면서 추가로 공부했어! [Difference between multitask learning and transfer learning - StackExchange](https://stats.stackexchange.com/questions/255025/difference-between-multitask-learning-and-transfer-learning)
 
 위 글 보니, multi-task learning은 1997년부터 이어져온 개념같음. 이때 이미 learning to learn이란 키워드 존재.
-
-
-
-- **Transfer Learning**
-  - **Finetuning:** This is probably the pardigm of transfer learning that you are most familiar with. Here we have both source and target distributions, S(y|x) and T(y2|x2), where x  ≠ x2 and y1  ≠ y2. To fine tune you must have some labeled data in the target domain. We transfer knowledge by freezing the upper and intermediate layers, using a decaying LR etc. and adding lower layers trained specifically for the new classes. 
-  - **Multitask Learning**: Here we have multiple tasks T1, T2, T3...Tn; these tasks are trained jointly. An example is you might train a multitask network for both sentiment classification and named entity recognition simultaneously. This is a form of TL because essentially you are transfering knowledge between the two during training.
-  - **Domain Adaptation**: This is similar to fine-tuning except ONLY the domain changes not the set of labels. So given two distributions S(y|x), T(y|x2) x ≠ x2, but y is the same. Most domain adaptation focuses on the unsupervised case where there is no labeled data in the target domain. Example: Adapting a model of labeled photos of cars from a simulator (source domain) to  unlabeled cars on streets (target domain). 
-
-- **Metalearning (life-long learning):**  The goal of Meta-learning is to learn "general" properties (hyperparameters or weights) that are highly adaptable to new tasks. It learns these based on being trained on a large number of different tasks. In a way meta-learning can almost be thought of as "historical" multi-task learning in that it uses multiple different tasks to find this ideal set of properties. Recently, meta-learning tends focus on finding "model agnostic" solutions where as multi-task learning remains deeply tied to model architecture.
 
 
 
