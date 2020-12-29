@@ -1,0 +1,18 @@
+## 2020.12.29
+- 갑자기 jupyter tab이 안되고 torch는 지 멋대로 놀고 난리난리
+- 별의 별 디버깅 난리에 jupyter 관련 링크 삭제도 해보고
+  - https://stackoverflow.com/questions/33052232/how-to-uninstall-jupyter
+- tornado downgrade하란 말도 듣고 다른 stackoverflow도 찾아보고
+  -  https://stackoverflow.com/questions/33665039/tab-completion-does-not-work-in-jupyter-notebook-but-fine-in-ipython-terminal
+  - https://stackoverflow.com/questions/48090119/jupyter-notebook-typeerror-init-got-an-unexpected-keyword-argument-io-l
+- 결국 source도 뜯어보려 했으나... 그건 무리
+  - gen, tornado, ipython, ipykernel 등등 라이브러리 소스도 봤징
+- 그래서 해결한 방법은, 아래 링크들
+  - https://github.com/jupyter/notebook/issues/2435
+  - https://ipython.readthedocs.io/en/stable/config/intro.html
+- 오류 소스 뜯어보니, tab msg를 던지는 와중에 ipython engine에서 오류가 난 것 같더라고
+- 어떻게 했냐?
+  - `ipython profile create`로 ipython config 파일 생성
+  - 생성된 파일로 들어가서 `c.Completer.use_jedi = False` 라인 추가
+  - `ImportError: The Jupyter Notebook requires tornado >= 5.0, but you have 4.5.3` 에러가 떠서 tornado upgrade
+- 따라란 성공적으로 build
