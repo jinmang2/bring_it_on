@@ -16,3 +16,35 @@
   - 생성된 파일로 들어가서 `c.Completer.use_jedi = False` 라인 추가
   - `ImportError: The Jupyter Notebook requires tornado >= 5.0, but you have 4.5.3` 에러가 떠서 tornado upgrade
 - 따라란 성공적으로 build
+
+
+## 2021.01.15
+1. PyTorch Detach Error 수정
+    ```
+    RuntimeError: Trying to backward through the graph a second time, 
+    but the saved intermediate results have already been freed. 
+    Specify retain_graph=True when calling backward the first time.
+    ```
+    - 벨만님 오류 수정!
+    - 처음에 뭔가 굉장히 많은 링크들을 확인했다 ㅋㅋ LSTMCell 관련
+      - https://www.facebook.com/groups/PyTorchKR/permalink/1203101746496171/
+      - https://github.com/jinserk/pytorch-asr/blob/master/asr/models/deepspeech_ctc/network.py?fbclid=IwAR1IBgfpeRkyd_Q5QtSc5ynZGs6jeFoqMKcPHTLU3xtJcEL6C5lbsxCqp0Y
+      - https://github.com/ctr4si/A-Hierarchical-Latent-Structure-for-Variational-Conversation-Modeling/blob/master/model/layers/rnncells.py?fbclid=IwAR1J4SUTt0N91kA_hA5yU2VHHaFIwSYDsHqW4OJITQxI1D55Y8J5-Momcgk
+      - https://github.com/sordonia/zforcing/blob/master/model.py
+      - https://discuss.pytorch.org/t/solved-training-a-simple-rnn/9055/14
+      - https://discuss.pytorch.org/t/why-i-must-set-retain-graph-true-so-that-my-program-can-run-without-error/12428/2
+    - 이 과정에서 정말 많은 것들을 배움...
+        ```python
+        hidden = hidden[0].detach(), hidden[1].detach()
+        ```
+    - 그러나 LSTM Cell 문제가 아니었고, 과거 tensor에 접근하는 과정에서 그래프가 꼬였던 것이 문제.
+    - NAS 코드도 얻고 디버깅도 하고 유익했다.
+2. Pytorch id vs data_ptr
+    - 이건 공부거리! 
+    - 좀 많이 봐야겠다
+    - https://discuss.pytorch.org/t/any-way-to-check-if-two-tensors-have-the-same-base/44310
+    - https://wordbe.tistory.com/entry/Pytorch-1-파이토치를-써야하는-이유-텐서란
+    - https://stackoverflow.com/questions/62607863/slicing-pytorch-tensors-and-use-of-data-ptr
+    - https://stackoverflow.com/questions/62523708/pointer-type-behavior-in-pytorch
+
+  
