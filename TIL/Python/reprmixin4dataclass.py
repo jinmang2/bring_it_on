@@ -16,7 +16,28 @@ class JSONSaveLoadMixin:
         return cls(**json.loads(text))
 
 
+class ReprMixin:
+    def update(self, contents: Dict, overwrite=False):
+        for key, value in contents.items():
+            if key in self.__dict__.keys() and not self.overwrite:
+                continue
+            setattr(self, key, value)
 
+    def __repr__(self):
+        cls_name = self.__class__.__qualname__
+        FIELDS = self.__dataclass_fields__
+        ADDED = list(set(self.__dict__.keys()).difference(FIELDS))
+        ADDED = {k: v for k, v in self.__dict__.items() if k in ADDED}
+        contents = "==== FIELDS CONTENTS ====\n" + ", ".join([
+            field.name + ": " +  str(field.type).split(".")[-1]
+            for field in FIELDS.values()
+        ])
+        if ADDED:
+            contents += "\n==== ADDED CONTENTS ====\n" + ", ".join([
+                k + ": " + str(type(v)) for k, v in ADDED.items()
+            ])
+        N_EPOCHS = len(list(self.__dict__.values())[0])
+        return cls_name + f"(N_EPOCHS:{N_EPOCHS}):\n" + contents
 
 
 @dataclass(repr=False)
